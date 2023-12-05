@@ -4,7 +4,7 @@ on:
   workflow_call:
   
 jobs:
-  01-pre-commit:
+  pre-commit:
     runs-on: self-hosted
     container:
       image: mahmoudabdelaziz22/bash
