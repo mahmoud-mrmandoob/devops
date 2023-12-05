@@ -7,7 +7,7 @@ on:
         required: true
 
 jobs:
-  pre-commit:
+  deploy-k8s:
     runs-on: self-hosted
     container:
       image: mahmoudabdelaziz22/mrmandoob-kubectl
