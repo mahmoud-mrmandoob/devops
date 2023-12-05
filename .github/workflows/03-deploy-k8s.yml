@@ -9,8 +9,8 @@ on:
 jobs:
   deploy-k8s:
     runs-on: self-hosted
-    container:
-      image: mahmoudabdelaziz22/mrmandoob-kubectl
+    # container:
+    #   image: mahmoudabdelaziz22/mrmandoob-kubectl
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
