@@ -18,7 +18,7 @@ jobs:
         run: ls -al
       - name: Create kubeconfig
         run: |
-             mkdir ${HOME}/.kube
+             mkdir ${HOME}/.kube || true
              echo ${{ secrets.KUBE_CONFIG }} | base64 --decode > ${HOME}/.kube/config
              cat ${HOME}/.kube/config
       - name: kubectl
