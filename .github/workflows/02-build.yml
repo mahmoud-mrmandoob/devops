@@ -9,7 +9,7 @@ on:
          required: true    
 
 jobs:
-  02-build:
+  build:
     runs-on: self-hosted 
     steps:
       - name: Checkout code
