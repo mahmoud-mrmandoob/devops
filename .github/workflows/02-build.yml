@@ -1,0 +1,22 @@
+name: 02-build
+
+on:
+  workflow_call:
+    secrets:
+      DOCKER_USER:
+        required: true
+      DOCKER_PASSWORD:
+         required: true    
+
+jobs:
+  02-build:
+    runs-on: self-hosted 
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Docker login
+        run: docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASSWORD }}
+      - name: Build ecommerce image
+        run: docker build --build-arg user=mrmandoob --build-arg uid=1000 -f Dockerfile -t mahmoudabdelaziz22/ecommerce .
+      - name: Push image
+        run: docker push mahmoudabdelaziz22/ecommerce

@@ -1,0 +1,27 @@
+name: 03-deploy-k8s
+
+on:
+  workflow_call:
+    secrets:
+      KUBE_CONFIG:
+        required: true
+
+jobs:
+  01-pre-commit:
+    runs-on: self-hosted
+    container:
+      image: mahmoudabdelaziz22/mrmandoob-kubectl
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: list repo
+        run: ls -al
+      - name: Create kubeconfig
+        run: |
+             mkdir ${HOME}/.kube
+             echo ${{ secrets.KUBE_CONFIG }} | base64 --decode > ${HOME}/.kube/config
+             cat ${HOME}/.kube/config
+      - name: kubectl
+        run:  kubectl get nodes
+      - name: Deploy K8s
+        run: kubectl apply -R -f ./k8s

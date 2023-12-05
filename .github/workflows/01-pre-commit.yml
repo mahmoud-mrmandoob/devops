@@ -1,0 +1,33 @@
+name: 01-pre-commit
+
+on:
+  workflow_call:
+  
+jobs:
+  01-pre-commit:
+    runs-on: self-hosted
+    container:
+      image: mahmoudabdelaziz22/bash
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: get master commits
+        run: |
+            git rev-list HEAD > check_master.txt
+            remote_master_sha=$(git ls-remote https://$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY.git $GITHUB_BASE_REF | awk '{ print $1}')    
+            echo "$remote_master_sha"
+            cat check_master.txt   
+            echo "sha == $remote_master_sha"    
+            echo " Target branch ==  $GITHUB_BASE_REF "    
+            if grep -Fxq "$remote_master_sha"  ./check_master.txt
+            then
+                    echo "#########################################################################\n"
+                    echo "         Your branch have latest updates "
+                    echo "#########################################################################\n"
+                    exit 0
+            else
+                    echo "###############################################################################################################################"
+                    echo "    Please rebase latest updates from $CI_MERGE_REQUEST_TARGET_BRANCH_NAME   ---> $remote_master_sha  before push to your branch"
+                    echo "###############################################################################################################################"
+                    exit 1
+            fi
