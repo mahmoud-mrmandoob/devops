@@ -6,6 +6,8 @@ on:
 jobs:
   code-quality:
     runs-on: self-hosted
+    container:
+        image: ubuntu:latest
     services:
       mysql:
         image: mysql:8.0.21
