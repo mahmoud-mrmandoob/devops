@@ -16,12 +16,20 @@ jobs:
           - 3306:3306
         options: --health-cmd="mysqladmin ping"
     steps:
-      - run: |
-         sudo apt-get update
-         sudo apt-get install -y software-properties-common
-         sudo add-apt-repository ppa:ondrej/php
-         sudo apt-get update
-         sudo apt-get install -y php7.4 php7.4-cli php7.4-fpm php7.4-json php7.4-common php7.4-mysql php7.4-zip php7.4-gd php7.4-mbstring php7.4-curl php7.4-xml php7.4-bcmath php7.4-json
+      - name: Install prerequisites
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y software-properties-common
+  
+      - name: Add PHP repository
+        run: |
+          sudo add-apt-repository ppa:ondrej/php
+          sudo apt-get update
+  
+      - name: Install PHP 7.4
+        run: |
+          sudo apt-get install -y php7.4 php7.4-cli php7.4-fpm php7.4-json php7.4-common php7.4-mysql php7.4-zip php7.4-gd php7.4-mbstring php7.4-curl php7.4-xml php7.4-bcmath php7.4-json
+  
 
     #   - uses: shivammathur/setup-php@15c43e89cdef867065b0213be354c2841860869e
     #     with:
