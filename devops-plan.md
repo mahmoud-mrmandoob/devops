@@ -17,15 +17,15 @@ flowchart LR
 ```
 |          Stage           |                  Description                     |
 |--------------------------|--------------------------------------------------|
-| Development              |  description                                     |
-| Ready_for_Development    |  description                                     |
-| In_progress              |  description                                     |
-| Under_Review             |  description                                     |
-| Ready_For_Testing        |  description                                     |
-| In_Testing               |  description                                     |
-| Done_Testing             |  description                                     |
-| Ready_For_Release        |  description                                     |
-| Released                 |  description                                     |
+| Development              |  description  |
+| Ready_for_Development    |  description  |
+| In_progress              |  description  |
+| Under_Review             |  description  |
+| Ready_For_Testing        |  description  |
+| In_Testing               |  description  |
+| Done_Testing             |  description  |
+| Ready_For_Release        |  description  |
+| Released                 |  description  |
 
 ## 2- Agile software:
 * Jira
@@ -74,9 +74,18 @@ gitGraph
    commit
 
 ```
+* Branchs:
+
+|  Branch Name   |                        Description                              |
+|----------------|------------------------------------------------------------------------------------------------|
+| main           | it is protected long live branch map to production(only CTO and Product Owner can accept PRs). |
+| develop        | it is protected long live branch map to testing environment (only CTO and Team lead can accept PRs).|
+| feature branch | it is not protected branch related to certain feature it comes from main, merge to develop for testing and end by merging it to main branch.|
+| hotfix branch  | it is not protected branch related to certain feature it comes from main,and end by merging it to main and develop branch. |
+
 ## 4- CI/CD Pipeline:
 
-* feature beanch pipeline
+* feature branch pipeline
 ``` mermaid
 flowchart LR
     id1>Commit] --> id2>Post_Commit]
@@ -129,8 +138,7 @@ flowchart LR
 | Vulnarability Scan   | Scan docker images if it has any vulnarabilities.               |
 | Deploy               | Deploy to k8s cluster and run db migration.                     |
 | Automation Testing   | Run Automation testing scripts.                                 |
-| Health Check         | Hit an endpoint to verify that application is up and running     |
-
+| Health Check         | Hit an endpoit to verify that application is up and running     |
 
 
 
