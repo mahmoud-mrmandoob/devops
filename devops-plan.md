@@ -78,7 +78,7 @@ gitGraph
 
 |  Branch Name   |                        Description                              |
 |----------------|------------------------------------------------------------------------------------------------|
-| main           | it is protected long live branch map to production(only CTO and Product Owner can accept PRs). |
+| main           | it is protected long live branch map to production(only CTO can accept PRs). |
 | develop        | it is protected long live branch map to testing environment (only CTO and Team lead can accept PRs).|
 | feature branch | it is not protected branch related to certain feature it comes from main, merge to develop for testing and end by merging it to main branch.|
 | hotfix branch  | it is not protected branch related to certain feature it comes from main,and end by merging it to main and develop branch. |
